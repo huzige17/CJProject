@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1,user-scalable=no",>
+    <title>周启虎</title>
+
+    <!--用来加载外部资源的标签-->
+    <link rel="short icon" href="Resource/icon.png">
+    <link rel="stylesheet" href="ExternalStyle.css">
+
+    <script type="text/javascript" src="CommonJS.js"></script>
+
+    <style>
+        .i_head_div{
+            text-align: center;
+        }
+        .i_head_div img{
+            margin-top: 50px;
+        }
+        .i_inner_div{
+            border: 1px solid #dddddd;
+            border-radius: 5px;
+            width: 90%;
+            height: 100px;
+            margin: 0 auto;
+            background: white;
+            margin-top: 30px;
+        }
+        .i_inner_div div{
+            height: 50px;
+        }
+        .i_inner_div div span{
+            padding-left: 15px;
+            font-size: 20px;
+            line-height: 50px;
+        }
+        .i_login_div{
+            height: 50px;
+            width: 90%;
+            background: rgb(36,92,161);
+            margin: 0 auto;
+            margin-top: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .i_login_div input{
+            font-size: 20px;
+            color: white;
+            height: 50px;
+            line-height: 50px;
+        }
+        input{
+            outline: medium;
+            background-color: transparent;
+            border: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<!--语义化标签：标签本身没有意义，用来增强代码可读性-->
+<!--用来放少量文字的标签-->
+<header>
+    <span>登录</span>
+</header>
+
+<div class="i_head_div">
+    <img src="Resource/head.png" alt="">
+</div>
+
+<form action="">
+    <div class="i_inner_div">
+        <div style="border-bottom: 1px solid #dddddd">
+            <span>账号名：</span>
+            <input id="i_account" type="text"><br>
+        </div>
+        <div>
+            <span>密码：</span>
+            <input id="i_pwd" type="password"><br>
+        </div>
+    </div>
+
+    <div class="i_login_div">
+        <input id="i_btn" type="button" value="登录">
+    </div>
+
+    <script>
+        var btn = document.getElementById("i_btn");
+        btn.onclick = function () {
+            var userName = encodeURIComponent(document.getElementById("i_account").value);
+            var pwd = encodeURIComponent(document.getElementById("i_pwd").value);
+
+            /*向服务器发送请求（传参）*/
+            var par="username="+userName+"&pwd="+pwd;
+            requestMethod('post','login',par,function (str) {
+                if (str == "登录成功") {
+                    location.href = "DropService.html";
+                } else {
+                    alert(str);
+                }
+            });
+
+            /*接收服务器返回的数据*/
+            //xhr.onreadystatechange=function(){
+                //xhr.readyState == 4 代表数据请求完成
+                //xhr.status == 200 代表数据成功返回
+            //    if(xhr.readyState==4 && xhr.status==200){
+                    //responseText里面包含了服务端返回的数据
+             //       var responseData=JSON.parse(xhr.responseText);
+             //       var str=responseData.data;
+             //       if(str=="登录成功"){
+             //           location.href="DropService.html";
+             //       }else{
+             //           alert(str);
+             //       }
+             //   }
+
+      //  }
+
+        }
+    </script>
+
+</form>
+
+</body>
+</html>
